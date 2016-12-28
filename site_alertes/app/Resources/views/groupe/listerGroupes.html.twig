@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    Liste des groupes :
+    <ul>
+    {% for groupe in groupes %}
+        <li>
+            <a href="{{ path("app_groupe_affichergroupe", {'id': groupe.id}) }}">
+                {{ groupe.id }} - {{ groupe.nomGroupe }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
