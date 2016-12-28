@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Groupe
  *
- * @ORM\Table(name="groupe")
+ * @ORM\Table(name="groupes")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GroupeRepository")
  */
 class Groupe
@@ -15,11 +15,11 @@ class Groupe
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="idGroupe", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $idGroupe;
 
     /**
      * @var string
@@ -34,9 +34,9 @@ class Groupe
      *
      * @return int
      */
-    public function getId()
+    public function getIdGroupe()
     {
-        return $this->id;
+        return $this->idGroupe;
     }
 
     /**
