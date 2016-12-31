@@ -14,7 +14,7 @@ use AppBundle\Entity\Message;
   class MessageController extends Controller
   {
     /**
-    *@Route("/nouveau-message")
+    *@Route("/message/add")
     *@Template("message/nouveau-message.html.twig")
     */
     public function créerMessage(Request $request){
