@@ -17,12 +17,13 @@ use AppBundle\Entity\Message;
     *@Route("/message/add")
     *@Template("message/nouveau-message.html.twig")
     */
-    public function créerMessage(Request $request){
+    public function creerMessageAction(Request $request){
       $nouveauMessage = new Message();
       //J'utilise un form builder pour créer un formulaire  ('form') qui correspond à une entité message
       $formBuilder = $this->get('form.factory')->createBuilder('form', $nouveauMessage);
       //J'ajout les champs que je veux dans mon futur formualaire
       $formBuilder
+        ->add('libelle',    'text')
         ->add('objet',      'text')
         ->add('contenu',    'textarea')
         ->add('créer',      'submit')
@@ -35,18 +36,39 @@ use AppBundle\Entity\Message;
         $managerEntite = $this->getDoctrine()->getManager();
         $managerEntite->persist($nouveauMessage);
         $managerEntite->flush();
-        //rediriger sur l'acueil quand on en aura un
+        return $this->render('default/index.html.twig');
       }
       return array('form' => $form->createView());
+    }
+
+    /**
+    *@Route("/messages")
+    *@Template("message/liste-des-messages.html.twig")
+    */
+    public function listerMessagesAction(){
+      $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
+      if(!$messages){
+        throw $this->createNotFoundException('aucun message enregistré dans la base de donnée');
+      }
+      return array('messages' => $messages);
+    }
+
+    /**
+    *@Route("/message/{id}")
+    *@Template("message/message.html.twig")
+    */
+    public function afficherMessageAction($id){
+      $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
+      if(!$message){
+        throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
+      }
+      return array('message' => $message);
     }
 
 
 
 
-      public function indexAction(Request $request)
-      {
-          return $this->render('index.html.twig');
-      }
+
   }
 
  ?>

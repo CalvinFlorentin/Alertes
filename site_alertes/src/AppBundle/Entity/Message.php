@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table(name="message")
+ * @ORM\Table(name="messages")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MessageRepository")
  */
 class Message
@@ -25,7 +25,7 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=255)
+     * @ORM\Column(name="libelle", type="string", length=255, unique=true)
      */
     private $libelle;
 
@@ -62,6 +62,29 @@ class Message
      * @return Message
      */
 
+     /**
+      * Set libelle
+      *
+      * @param string $libelle
+      *
+      * @return Message
+      */
+     public function setLibelle($libelle)
+     {
+         $this->libelle = $libelle;
+
+         return $this;
+     }
+
+     /**
+      * Get libelle
+      *
+      * @return string
+      */
+     public function getLibelle()
+     {
+         return $this->libelle;
+     }
 
     /**
      * Set objet

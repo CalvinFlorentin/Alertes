@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+  <h1>liste des messages:<h1>
+  {% for message in messages %}
+    <h2><a href="{{path('app_message_affichermessage',
+            {'id':message.id})  }}">
+              {{message.libelle}}
+        </a>
+    </h2>
+
+  {% endfor %}
+{% endblock %}

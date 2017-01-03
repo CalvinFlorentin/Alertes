@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+  <h2>Message actuellement visionné: {{message.libelle}}</h2>
+  <p>
+    <h3>Objet: </h3>
+    {{message.objet}}</br>
+    <h3>Contenu du message: </h3>
+    {{message.contenu}}</br>
+  </p>
+{% endblock %}
