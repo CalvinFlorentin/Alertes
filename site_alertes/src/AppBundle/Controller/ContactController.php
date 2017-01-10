@@ -48,7 +48,7 @@ class ContactController extends Controller
             $em->persist($contact);
             $em->flush($contact);
 
-            return $this->redirectToRoute('personne_show', array('id' => $contact->getId()));
+            return $this->redirectToRoute('personne_show', array('id' => $contact->getIdContact()));
         }
 
         return $this->render('contact/new.html.twig', array(
@@ -88,7 +88,7 @@ class ContactController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('personne_edit', array('id' => $contact->getId()));
+            return $this->redirectToRoute('personne_edit', array('id' => $contact->getIdContact()));
         }
 
         return $this->render('contact/edit.html.twig', array(
@@ -128,7 +128,7 @@ class ContactController extends Controller
     private function createDeleteForm(Contact $contact)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('personne_delete', array('id' => $contact->getId())))
+            ->setAction($this->generateUrl('personne_delete', array('id' => $contact->getIdContact())))
             ->setMethod('DELETE')
             ->getForm()
         ;
