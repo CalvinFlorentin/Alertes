@@ -31,7 +31,7 @@ class PersonnePhysique
     /**
      * @var string
      *
-     * @ORM\Column(name="prenomPersonne", type="integer", length=32)
+     * @ORM\Column(name="prenomPersonne", type="string", length=32)
      */
     private $prenomPersonne;
 

@@ -57,13 +57,13 @@ class Contact
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PersonnePhysique", inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity="PersonnePhysique", inversedBy="contacts", cascade={"persist"})
      * @ORM\JoinColumn(name="personne", referencedColumnName="idPersPhysique", nullable=true)
      */
     private $personne;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PersonneMorale", inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity="PersonneMorale", inversedBy="contacts", cascade={"persist"})
      * @ORM\JoinColumn(name="organisme", referencedColumnName="idPersMorale", nullable=true)
      */
     private $organisme;
