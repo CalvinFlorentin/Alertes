@@ -1,53 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
+    {% block head %}
         <meta charset="UTF-8" />
         <title>{% block title %}Gestion d'alertes{% endblock %}</title>
 
-        {# import bootstrap #}
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/bootstrap/css/bootstrap-theme.min.css') }}">
-        <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-
-        {# import jquery #}
-        <script type="text/javascript" src="{{ asset('assets/jquery/jquery-3.1.1.min.js') }}"></script>
 
         {% block stylesheets %}
+            {# import bootstrap #}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/bootstrap/css/bootstrap-theme.min.css') }}">
+
+            {# import font-awesome#}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
+
             <!--link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /-->
+            <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}">
         {% endblock %}
+    {% endblock %}
 
-    </head>
+</head>
 
-    <body>
-      <header>
-        {% block header %}
+<body>
+    {% block body %}
 
-            <div id="wrapper">
-                <div id="container">
+        {#% include 'menu.html.twig' %#}
 
-        		<ul style="list-style: none;" align="center">
-        			<li style="display: inline;"><a href="#" class="btn_style" style="display:inline-block" >Gérer les membres</a></li>
-        			<li style="display: inline;"><a href="#" class="btn_style" style="display:inline-block">Gérer les groupes</a></li>
-        			<li style="display: inline;"><a href="#" class="btn_style" style="display:inline-block">Gérer les protocoles</a></li>
-        			<li style="display: inline;"><a href="#" class="btn_style" style="display:inline-block">Gérer les messages</a></li>
-        		</ul>
-
-        		<br>
-
-        		<ul style="list-style: none;" align="center">
-        			<li style="display: inline;"><a href="#" class="btn_protocole" style="display:inline-block" >Executer Protocole</a></li>
-        		</ul>
-
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Gestion d'alertes</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Mon compte</a></li>
+                    </ul>
                 </div>
             </div>
+        </nav>
 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="active"><a href="{{ path('homepage') }}"><i class="fa fa-home icon"></i>Tableau de bord<span class="sr-only">(current)</span></a></li>
+                        <li><a href="{{ path('personne_index') }}"><i class="fa fa-address-book icon"></i>Gestion des contacts</a></li>
+                        <li><a href="{{ path('groupe_index') }}"><i class="fa fa-users icon"></i>Gestion des groupes de contacts</a></li>
+                        <li><a href="{{ path('app_message_listermessages') }}"><i class="fa fa-envelope icon"></i>Gestion des messages</a></li>
+                        <li><a href="#"><i class="fa fa-bullhorn icon"></i>Gestion des protocoles</a></li>
+                    </ul>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="#"><i class="fa fa-cogs icon"></i>Exécuter un protocole</a></li>
+                    </ul>
+                </div>
 
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 contenu">
+                    {% block contenu %} {% endblock %}
+                </div>
 
+                <footer id="footer">Site d'alertes 2016/2017</footer>
+            </div>
+        </div>
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('assets/jquery/jquery-3.1.1.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
         {% endblock %}
-
-      </header>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <footer id="footer">Site d'alertes 2016/2017</footer>
-    </body>
+    {% endblock %}
+</body>
 </html>
