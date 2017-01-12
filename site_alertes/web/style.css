@@ -71,18 +71,18 @@ body {
 
 
 /*
- * contenu
+ * main
  */
 
-.contenu {
+.main {
     padding: 20px;
 }
 @media (min-width: 768px) {
-    .contenu {
+    .main {
         padding-right: 40px;
         padding-left: 40px;
     }
 }
-.contenu .page-header {
+.main .page-header {
     margin-top: 0;
 }

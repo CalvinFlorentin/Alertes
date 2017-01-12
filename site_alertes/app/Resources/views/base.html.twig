@@ -3,7 +3,7 @@
 <head>
     {% block head %}
         <meta charset="UTF-8" />
-        <title>{% block title %}Gestion d'alertes{% endblock %}</title>
+        <title>{% block title %} {% endblock %} - Gestion d'alertes</title>
 
 
         {% block stylesheets %}
@@ -33,7 +33,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Gestion d'alertes</a>
+                    <a class="navbar-brand" href="{{ path('homepage') }}">Gestion d'alertes</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,7 @@
                     <ul class="nav nav-sidebar">
                         <li class="active"><a href="{{ path('homepage') }}"><i class="fa fa-home icon"></i>Tableau de bord<span class="sr-only">(current)</span></a></li>
                         <li><a href="{{ path('personne_index') }}"><i class="fa fa-address-book icon"></i>Gestion des contacts</a></li>
-                        <li><a href="{{ path('groupe_index') }}"><i class="fa fa-users icon"></i>Gestion des groupes de contacts</a></li>
+                        <li><a href="{{ path('groupe_index') }}"><i class="fa fa-users icon"></i>Gestion des groupes</a></li>
                         <li><a href="{{ path('app_message_listermessages') }}"><i class="fa fa-envelope icon"></i>Gestion des messages</a></li>
                         <li><a href="#"><i class="fa fa-bullhorn icon"></i>Gestion des protocoles</a></li>
                     </ul>
@@ -58,8 +58,19 @@
                     </ul>
                 </div>
 
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 contenu">
-                    {% block contenu %} {% endblock %}
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    {% block main %}
+                        <div class="page-title">
+                            <h1 class="title">{{ block('title') }}</h1>
+                            <p class="description">{% block description %}{% endblock %}</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% block main_content %} {% endblock %}
+                            </div>
+                        </div>
+                    {% endblock %}
                 </div>
 
                 <footer id="footer">Site d'alertes 2016/2017</footer>

@@ -25,7 +25,7 @@ use AppBundle\Entity\Message;
       $formBuilder
         ->add('libelle',    'text')
         ->add('objet',      'text')
-        ->add('contenu',    'textarea')
+        ->add('main',    'textarea')
         ->add('créer',      'submit')
       ;
       //Je construit le formualaire

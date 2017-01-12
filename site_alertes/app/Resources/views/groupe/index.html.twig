@@ -1,39 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Groupes list</h1>
+{% block title %}Gestion des groupe{% endblock %}
+{% block description %}Vous pouvez gérer ici les groupes de contact.{% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idgroupe</th>
-                <th>Nomgroupe</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for groupe in groupes %}
-            <tr>
-                <td><a href="{{ path('groupe_show', { 'id': groupe.idGroupe }) }}">{{ groupe.idGroupe }}</a></td>
-                <td>{{ groupe.nomGroupe }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('groupe_show', { 'id': groupe.idGroupe }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block main_content %}
+    <div class="card">
+        <div class="card-body table-responsive">
+            <table class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Nom du Groupe</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for groupe in groupes %}
+                    <tr>
+                        <td><a href="{{ path('groupe_show', { 'id': groupe.idGroupe }) }}">{{ groupe.nomGroupe }}</a></td>
+                        <td><a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}">Modifier</a></td>
+                        <td>Supprimer</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('groupe_new') }}">Create a new groupe</a>
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('groupe_new') }}">Create a new groupe</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
