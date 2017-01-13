@@ -1,48 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Contact</h1>
+{% block title %}Détail du groupe{% endblock %}
+{% block description %}Vous pouvez consulter toutes les informations du contact {% endblock %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idcontact</th>
-                <td>{{ contact.idContact }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ contact.email }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ contact.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ contact.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Codepostal</th>
-                <td>{{ contact.codePostal }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ contact.ville }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block main_content %}
+    <div class="card">
+        <div class="card-body table-responsive">
+            {% if contact.personne != false %}
+                <p>Nom de la personne : </p>
+                <p>Prénom de la personne : </p>
+            {% elseif contact.organisme != false %}
+                <p>Nom de l'organisme : </p>
+            {% else %}
+                <p>Aucune personne ou organisme associer à ce contact</p>
+            {% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('personne_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('personne_edit', { 'id': contact.idContact }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <p>Email : {{ contact.email }}</p>
+            <p>Téléphone : {{ contact.telephone }}</p>
+            <p>Adresse : {{ contact.adresse }}</p>
+            <p>Code Postal : {{ contact.codePostal }}</p>
+            <p>Ville : {{ contact.ville }}</p>
+
+            <ul>
+                <li>
+                    <a href="{{ path('personne_index') }}" class="btn btn-info btn-sm">
+                        <span class="fa fa-reply"></span> Retourner à la liste des contacts
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('personne_edit', { 'id': contact.idContact }) }}" class="btn btn-info btn-sm">
+                        <span class="fa fa-refresh"></span> Modifier ce contact
+                    </a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-info btn-sm">
+                        <span class="fa fa-times-circle"></span> Supprimer ce contact
+                    </button>
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
