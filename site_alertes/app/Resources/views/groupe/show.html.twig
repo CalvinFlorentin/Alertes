@@ -3,25 +3,29 @@
 {% block title %}Détail du groupe{% endblock %}
 
 {% block main_content %}
-    <p>Nom du groupe : {{ groupe.nomGroupe }}</p>
+    <div class="card">
+        <div class="card-body table-responsive">
+            <p>Nom du groupe : {{ groupe.nomGroupe }}</p>
 
-    <ul>
-        <li>
-            <a href="{{ path('groupe_index') }}" class="btn btn-info btn-sm">
-                <span class="fa fa-reply"></span> Retourner à la liste des groupes
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}" class="btn btn-info btn-sm">
-                <span class="fa fa-refresh"></span> Modifier ce groupe
-            </a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <button type="submit" class="btn btn-info btn-sm">
-                <span class="fa fa-times-circle"></span> Supprimer ce groupe
-            </button>
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('groupe_index') }}" class="btn btn-info btn-sm">
+                        <span class="fa fa-reply"></span> Retourner à la liste des groupes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}" class="btn btn-info btn-sm">
+                        <span class="fa fa-refresh"></span> Modifier ce groupe
+                    </a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-info btn-sm">
+                        <span class="fa fa-times-circle"></span> Supprimer ce groupe
+                    </button>
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

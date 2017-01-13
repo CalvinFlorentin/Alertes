@@ -1,47 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Contacts list</h1>
+{% block title %}Gestion des contacts{% endblock %}
+{% block description %}Vous pouvez gérer ici les personnes que vous pouvez contacter.{% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idcontact</th>
-                <th>Email</th>
-                <th>Telephone</th>
-                <th>Adresse</th>
-                <th>Codepostal</th>
-                <th>Ville</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td><a href="{{ path('personne_show', { 'id': contact.idContact }) }}">{{ contact.idContact }}</a></td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.telephone }}</td>
-                <td>{{ contact.adresse }}</td>
-                <td>{{ contact.codePostal }}</td>
-                <td>{{ contact.ville }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('personne_show', { 'id': contact.idContact }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('personne_edit', { 'id': contact.idContact }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block main_content %}
+    <div class="card">
+        <div class="card-body table-responsive">
 
-    <ul>
-        <li>
-            <a href="{{ path('personne_new') }}">Create a new contact</a>
-        </li>
-    </ul>
+            <a href="{{ path('personne_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span> Ajouter un nouveau contact</a>
+
+            <table class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <td><a href="{{ path('personne_show', { 'id': contact.idContact }) }}">{{ contact.email }}</a></td>
+                    <td>{{ contact.telephone }}</td>
+                    <td>{{ contact.adresse }}</td>
+                    <td>{{ contact.codePostal }}</td>
+                    <td>{{ contact.ville }}</td>
+                    <td>
+                        <a href="{{ path('personne_show', { 'id': contact.idContact }) }}" type="button" class="btn btn-info btn-xs">
+                            <span class="fa fa-refresh"></span> Modifier
+                        </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-xs">
+                            <span class="fa fa-times-circle"></span> Supprimer
+                        </button>
+                    </td>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('personne_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span> Ajouter un nouveau contact</a>
+        </div>
+    </div>
 {% endblock %}
