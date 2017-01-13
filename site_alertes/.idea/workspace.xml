@@ -4,10 +4,8 @@
     <list default="true" id="bdd307ca-8e49-4686-8179-aff029b239d6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/groupe/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/groupe/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/MessageController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/MessageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/style.css" afterPath="$PROJECT_DIR$/web/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig" />
     </list>
     <ignored path="site_alertes.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Contact.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Contact.php">
+      <file leaf-file-name="GroupeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/GroupeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="73" />
+            <state relative-caret-position="641">
+              <caret line="104" column="42" lean-forward="false" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -45,7 +43,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1606">
+            <state relative-caret-position="465">
               <caret line="73" column="7" lean-forward="false" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
               <folding />
             </state>
@@ -55,8 +53,8 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
-              <caret line="68" column="51" lean-forward="false" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+            <state relative-caret-position="685">
+              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,18 +73,20 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/groupe/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-              <folding />
+            <state relative-caret-position="374">
+              <caret line="41" column="91" lean-forward="false" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+              <folding>
+                <element signature="e#2082#2095#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/GroupeController.php">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="104" column="42" lean-forward="false" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="42" />
+            <state relative-caret-position="110">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="25" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -100,16 +100,6 @@
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="28" selection-end-column="39" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -150,7 +140,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/groupe/listerGroupes.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/GroupeController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Groupe.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Personne.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/PersonneMorale.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/ContactRepository.php" />
@@ -170,6 +159,7 @@
         <option value="$PROJECT_DIR$/web/style.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/groupe/index.html.twig" />
       </list>
     </option>
@@ -227,8 +217,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="width" value="1932" />
-    <option name="height" value="1084" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -262,7 +253,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -469,7 +460,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -584,18 +575,19 @@
       <workItem from="1484211048678" duration="2973000" />
       <workItem from="1484218277240" duration="44000" />
       <workItem from="1484218399772" duration="100000" />
-      <workItem from="1484247913099" duration="1320000" />
+      <workItem from="1484247913099" duration="1922000" />
+      <workItem from="1484277013985" duration="5179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72907000" />
+    <option name="totallyTimeSpent" value="78688000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1932" height="1084" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21242172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -864,14 +856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1606">
-          <caret line="73" column="7" lean-forward="false" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -880,18 +864,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/GroupeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="68" column="51" lean-forward="false" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+        <state relative-caret-position="641">
+          <caret line="104" column="42" lean-forward="false" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="28" selection-end-column="39" />
+        <state relative-caret-position="465">
+          <caret line="73" column="7" lean-forward="false" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -906,19 +898,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/GroupeController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/groupe/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="104" column="42" lean-forward="false" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="42" />
+        <state relative-caret-position="110">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="25" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/groupe/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="374">
+          <caret line="41" column="91" lean-forward="false" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+          <folding>
+            <element signature="e#2082#2095#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

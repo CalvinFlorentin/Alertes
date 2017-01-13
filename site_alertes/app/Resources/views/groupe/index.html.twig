@@ -6,6 +6,9 @@
 {% block main_content %}
     <div class="card">
         <div class="card-body table-responsive">
+
+            <a href="{{ path('groupe_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span> Ajouter un nouveau groupe</a>
+
             <table class="table table-striped" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -17,19 +20,47 @@
                 <tbody>
                 {% for groupe in groupes %}
                     <tr>
-                        <td><a href="{{ path('groupe_show', { 'id': groupe.idGroupe }) }}">{{ groupe.nomGroupe }}</a></td>
-                        <td><a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}">Modifier</a></td>
-                        <td>Supprimer</td>
+                        <td>
+                            <a href="{{ path('groupe_show', { 'id': groupe.idGroupe }) }}">{{ groupe.nomGroupe }}</a>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-info btn-xs" href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}">
+                                <span class="fa fa-refresh"></span> Modifier
+                            </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs" onclick="supprimerUnGroupe({{ groupe.idGroupe }})">
+                                <span class="fa fa-times-circle"></span> Supprimer
+                            </button>
+                        </td>
+
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
-            <ul>
-                <li>
-                    <a href="{{ path('groupe_new') }}">Create a new groupe</a>
-                </li>
-            </ul>
+            <a href="{{ path('groupe_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span> Ajouter un nouveau groupe</a>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        function supprimerUnGroupe (idGroupe) {
+            $.ajax({
+                type: "POST",
+                url: "{{ path('groupe_delete', { 'id': 'idGroupe' }) }}",
+                data: {'id' : idGroupe},
+                success: function () {
+                    console.log("réussi!");
+                },
+                error: function () {
+                    console.log("error!");
+                    console.log(url);
+                }
+            });
+        }
+    </script>
 {% endblock %}
