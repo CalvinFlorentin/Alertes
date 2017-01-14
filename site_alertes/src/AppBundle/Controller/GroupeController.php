@@ -89,7 +89,7 @@ class GroupeController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('groupe_edit', array('id' => $groupe->getIdGroupe()));
+            return  $this->redirectToRoute('groupe_show', array('id' => $groupe->getIdGroupe()));
         }
 
         return $this->render('groupe/edit.html.twig', array(

@@ -1,36 +1,122 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Contact creation</h1>
+{% set contact_active = true %}
 
-    {{ form_start(form) }}
+{% block title %}Création d'un contact{% endblock %}
+{% block description %}Permet d'enregistrer un nouveau contact{% endblock %}
 
-    {{ form_errors(form) }}
+{% block main_content %}
+    <div class="card">
+        <div class="card-body">
 
-    {{ form_row(form.email) }}
-    {{ form_row(form.telephone) }}
-    {{ form_row(form.adresse) }}
-    {{ form_row(form.codePostal) }}
-    {{ form_row(form.ville) }}
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-    <select id="choix-personne">
-        <option value="morale">Personne Morale</option>
-        <option value="physique">Personne Physique</option>
-    </select>
+            {{ form_errors(form) }}
+            {{ form_widget(form._token) }}
 
-    {{ form_widget(form.organisme, { 'id': 'organisme' }) }}
-    {{ form_widget(form.personne, {'id': 'personne' }) }}
+            <div class="form-group">
+                <label class="control-label">Voulez-vous ajouez un organisme ou une personne physique ?*</label>
+                <div class="">
+                    <select id="choix-personne" class="form-control">
+                        <option value="morale">Organisme</option>
+                        <option value="physique">Personne Physique</option>
+                    </select>
+                </div>
+            </div>
 
-    {{ form_widget(form._token) }}
+            <div id="organisme" class="form-group">
+                {{ form_label(form.organisme.nomOrganisme, "Nom de l'organisme*", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.organisme.nomOrganisme) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.organisme.nomOrganisme, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
 
-    <input type="submit" value="Create" />
-    {{ form_end(form, {'render_rest': false}) }}
+            <div id="personne">
+                <div class="form-group">
+                    {{ form_label(form.personne.nomPersonne, "Nom de la personne*", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.personne.nomPersonne) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.personne.nomPersonne, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('personne_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                <div class="form-group">
+                    {{ form_label(form.personne.prenomPersonne, "Prénom de la personne*", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                    {{ form_errors(form.personne.prenomPersonne) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.personne.prenomPersonne, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            {#<div class="form-group">
+                {{ form_label(form.nomGroupe, "Nom du groupe", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.nomGroupe) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.nomGroupe, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>#}
+
+            <div class="form-group">
+                {{ form_label(form.email, "Email*", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.email) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.telephone, "Téléphone", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.telephone) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.adresse) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.codePostal, "Code postal", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.codePostal) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.codePostal, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.ville, "Ville", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.ville) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit"  class="btn btn-info btn-lg btn-block" value="Enregistrer ce contact" />
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+
+            <a href="{{ path('personne_index') }}" class="btn btn-info btn-sm">
+                <span class="fa fa-reply"></span> Retourner à la liste des contacts
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
 
     <script src="{{ asset('bundles/framework/js/jquery-3.1.1.min.js') }}"></script>
     <script type="text/javascript">
@@ -47,6 +133,4 @@
             })
         });
     </script>
-
-
 {% endblock %}
