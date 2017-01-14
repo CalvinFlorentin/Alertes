@@ -32,7 +32,7 @@
                     <td>{{ contact.codePostal }}</td>
                     <td>{{ contact.ville }}</td>
                     <td>
-                        <a href="{{ path('personne_show', { 'id': contact.idContact }) }}" type="button" class="btn btn-info btn-xs">
+                        <a href="{{ path('personne_delete', { 'id': contact.idContact }) }}" type="button" class="btn btn-info btn-xs">
                             <span class="fa fa-refresh"></span> Modifier
                         </a>
                     </td>
