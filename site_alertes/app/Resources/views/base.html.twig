@@ -47,14 +47,27 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="{{ path('homepage') }}"><i class="fa fa-home icon"></i>Tableau de bord<span class="sr-only">(current)</span></a></li>
-                        <li><a href="{{ path('personne_index') }}"><i class="fa fa-address-book icon"></i>Gestion des contacts</a></li>
-                        <li><a href="{{ path('groupe_index') }}"><i class="fa fa-users icon"></i>Gestion des groupes</a></li>
-                        <li><a href="{{ path('app_message_listermessages') }}"><i class="fa fa-envelope icon"></i>Gestion des messages</a></li>
-                        <li><a href="#"><i class="fa fa-bullhorn icon"></i>Gestion des protocoles</a></li>
+                        <li {% if home_active is defined and home_active %} class="active" {% endif %}>
+                            <a href="{{ path('homepage') }}"><i class="fa fa-home icon"></i>Tableau de bord<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li {% if contact_active is defined and contact_active %} class="active" {% endif %}>
+                            <a href="{{ path('personne_index') }}"><i class="fa fa-address-book icon"></i>Gestion des contacts</a>
+                        </li>
+                        <li {% if groupe_active is defined and groupe_active %} class="active" {% endif %}>
+                            <a href="{{ path('groupe_index') }}"><i class="fa fa-users icon"></i>Gestion des groupes</a>
+                        </li>
+                        <li {% if message_active is defined and message_active %} class="active" {% endif %}>
+                            <a href="{{ path('app_message_listermessages') }}"><i class="fa fa-envelope icon"></i>Gestion des messages</a>
+                        </li>
+                        <li {% if protocole_active is defined and protocole_active %} class="active" {% endif %}>
+                            <a href="#"><i class="fa fa-bullhorn icon"></i>Gestion des protocoles</a>
+                        </li>
                     </ul>
+
                     <ul class="nav nav-sidebar">
-                        <li><a href="#"><i class="fa fa-cogs icon"></i>Exécuter un protocole</a></li>
+                        <li {% if execution_active is defined and execution_active %} class="active" {% endif %}>
+                            <a href="#"><i class="fa fa-cogs icon"></i>Exécuter un protocole</a>
+                        </li>
                     </ul>
                 </div>
 
