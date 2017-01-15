@@ -7,27 +7,24 @@
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
 
-    class PersonneType extends AbstractType
-    {
-        public function buildForm(FormBuilderInterface $builder, array $options)
-        {
+    class PersonneType extends AbstractType {
+        public function buildForm(FormBuilderInterface $builder, array $options) {
             $builder
                 ->add('personne', PersonnePhysiqueType::class)
                 ->add('organisme', PersonneMoraleType::class)
                 ->add('contacts', CollectionType::class, array(
-                    'entry_type'   => ContactType::class,
-                    'allow_add'    => true,
+                    'entry_type' => ContactType::class,
+                    'allow_add' => true,
                     'allow_delete' => true
-                ));
+                ))
+            ;
         }
 
-        public function configureOptions(OptionsResolver $resolver)
-        {
+        public function configureOptions(OptionsResolver $resolver) {
 
         }
 
-        public function getName()
-        {
+        public function getName() {
             return 'app_bundle_personne_type';
         }
     }

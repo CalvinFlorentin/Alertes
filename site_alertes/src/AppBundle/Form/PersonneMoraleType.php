@@ -7,31 +7,25 @@
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
 
-    class PersonneMoraleType extends AbstractType
-    {
+    class PersonneMoraleType extends AbstractType {
         /**
          * {@inheritdoc}
          */
-        public function buildForm(FormBuilderInterface $builder, array $options)
-        {
+        public function buildForm(FormBuilderInterface $builder, array $options) {
             $builder->add('nomOrganisme', TextType::class);
         }
 
         /**
          * {@inheritdoc}
          */
-        public function configureOptions(OptionsResolver $resolver)
-        {
-            $resolver->setDefaults(array(
-                'data_class' => 'AppBundle\Entity\PersonneMorale'
-            ));
+        public function configureOptions(OptionsResolver $resolver) {
+            $resolver->setDefaults(array('data_class' => 'AppBundle\Entity\PersonneMorale'));
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getBlockPrefix()
-        {
+        public function getBlockPrefix() {
             return 'appbundle_personnemorale';
         }
 

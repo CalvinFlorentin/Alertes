@@ -7,33 +7,28 @@
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
 
-    class PersonnePhysiqueType extends AbstractType
-    {
+    class PersonnePhysiqueType extends AbstractType {
         /**
          * {@inheritdoc}
          */
-        public function buildForm(FormBuilderInterface $builder, array $options)
-        {
+        public function buildForm(FormBuilderInterface $builder, array $options) {
             $builder
                 ->add('nomPersonne', TextType::class)
-                ->add('prenomPersonne', TextType::class);
+                ->add('prenomPersonne', TextType::class)
+            ;
         }
 
         /**
          * {@inheritdoc}
          */
-        public function configureOptions(OptionsResolver $resolver)
-        {
-            $resolver->setDefaults(array(
-                'data_class' => 'AppBundle\Entity\PersonnePhysique'
-            ));
+        public function configureOptions(OptionsResolver $resolver) {
+            $resolver->setDefaults(array('data_class' => 'AppBundle\Entity\PersonnePhysique'));
         }
 
         /**
          * {@inheritdoc}
          */
-        public function getBlockPrefix()
-        {
+        public function getBlockPrefix() {
             return 'appbundle_personnephysique';
         }
 

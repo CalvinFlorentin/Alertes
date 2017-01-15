@@ -39,7 +39,7 @@
          * Groupe constructor.
          */
         public function __construct() {
-            $this->$contacts = new ArrayCollection();
+            $this->contacts = new ArrayCollection();
         }
 
 
