@@ -15,6 +15,7 @@
                 <thead>
                 <tr>
                     <th>Email</th>
+                    <th>Nom</th>
                     <th>Téléphone</th>
                     <th>Adresse</th>
                     <th>Code Postal</th>
@@ -27,6 +28,15 @@
                 {% for contact in contacts %}
                 <tr>
                     <td><a href="{{ path('personne_show', { 'id': contact.idContact }) }}">{{ contact.email }}</a></td>
+
+                    {% if contact.personne != false %}
+                        <td>{{ contact.personne.nomPersonne }} {{ contact.personne.prenomPersonne }}</td>
+                    {% elseif contact.organisme != false %}
+                        <td>{{ contact.organisme.nomOrganisme }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+
                     <td>{{ contact.telephone }}</td>
                     <td>{{ contact.adresse }}</td>
                     <td>{{ contact.codePostal }}</td>

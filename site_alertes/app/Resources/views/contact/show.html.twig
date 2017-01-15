@@ -9,10 +9,10 @@
     <div class="card">
         <div class="card-body table-responsive">
             {% if contact.personne != false %}
-                <p>Nom de la personne : </p>
-                <p>Prénom de la personne : </p>
+                <p>Nom de la personne : {{ contact.personne.nomPersonne }}</p>
+                <p>Prénom de la personne : {{ contact.personne.prenomPersonne }}</p>
             {% elseif contact.organisme != false %}
-                <p>Nom de l'organisme : </p>
+                <p>Nom de l'organisme : {{ contact.organisme.nomOrganisme }}</p>
             {% else %}
                 <p>Aucune personne ou organisme associer à ce contact</p>
             {% endif %}
