@@ -10,6 +10,15 @@
         <div class="card-body table-responsive">
             <p>Nom du groupe : {{ groupe.nomGroupe }}</p>
 
+            <p>
+                Listes des contacts de ce groupe :
+                <ul>
+                    {% for contact in groupe.contacts %}
+                        <li>{{ contact.email }}</li>
+                    {% endfor %}
+                </ul>
+            </p>
+
             <ul>
                 <li>
                     <a href="{{ path('groupe_index') }}" class="btn btn-info btn-sm">
