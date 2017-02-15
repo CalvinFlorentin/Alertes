@@ -1,16 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Instruction creation</h1>
+{% set groupe_active = true %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+{% block title %}Création d'une instruction{% endblock %}
+{% block description %}Permet de créer une nouvelle instruction pour un protocole.{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('instruction_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block main_content %}
+<div class="card">
+    <div class="card-body">
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_label(form.nomInstruction, "Nom de l'instruction", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.nomInstruction) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.nomInstruction, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.description, "Description de l'instruction", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            {{ form_errors(form.description) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit"  class="btn btn-info btn-lg btn-block" value="Enregistrer cette instruction" />
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+
+        <a href="{{ path('instruction_index') }}" class="btn btn-info btn-sm">
+            <span class="fa fa-reply"></span> Retourner à la liste des instructions
+        </a>
+
+    </div>
+</div>
 {% endblock %}

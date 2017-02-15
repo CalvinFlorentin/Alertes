@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Instruction;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Instruction controller.
@@ -48,7 +49,7 @@ class InstructionController extends Controller
             $em->persist($instruction);
             $em->flush($instruction);
 
-            return $this->redirectToRoute('instruction_show', array('id' => $instruction->getId()));
+            return $this->redirectToRoute('instruction_show', array('id' => $instruction->getIdInstruction()));
         }
 
         return $this->render('instruction/new.html.twig', array(
@@ -88,7 +89,7 @@ class InstructionController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('instruction_edit', array('id' => $instruction->getId()));
+            return $this->redirectToRoute('instruction_show', array('id' => $instruction->getIdInstruction()));
         }
 
         return $this->render('instruction/edit.html.twig', array(
@@ -128,7 +129,7 @@ class InstructionController extends Controller
     private function createDeleteForm(Instruction $instruction)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('instruction_delete', array('id' => $instruction->getId())))
+            ->setAction($this->generateUrl('instruction_delete', array('id' => $instruction->getIdInstruction())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -1,41 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Instructions list</h1>
+{% set protocole_active = true %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idinstruction</th>
-                <th>Nominstruction</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for instruction in instructions %}
-            <tr>
-                <td><a href="{{ path('instruction_show', { 'id': instruction.idInstruction }) }}">{{ instruction.idInstruction }}</a></td>
-                <td>{{ instruction.nomInstruction }}</td>
-                <td>{{ instruction.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('instruction_show', { 'id': instruction.idInstruction }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block title %}Gestion des instructions{% endblock %}
+{% block description %}Vous pouvez gérer ici tous les instructions créés pour protocoles.{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('instruction_new') }}">Create a new instruction</a>
-        </li>
-    </ul>
+{% block main_content %}
+    <div class="card">
+        <div class="card-body table-responsive">
+
+            <a href="{{ path('instruction_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span>
+                Ajouter une nouvelle instruction</a>
+
+            <table class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Nom instruction</th>
+                    <th>Description</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody> {% for instruction in instructions %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('instruction_show', { 'id': instruction.idInstruction }) }}">{{ instruction.nomInstruction }}</a>
+                        </td>
+                        <td>{{ instruction.description }}</td>
+                        <td>
+                            <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}" type="button"
+                               class="btn btn-info btn-xs">
+                                <span class="fa fa-refresh"></span> Modifier
+                            </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs">
+                                <span class="fa fa-times-circle"></span> Supprimer
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %} </tbody>
+            </table>
+
+            <a href="{{ path('instruction_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span>
+                Ajouter une nouvelle instruction</a>
+        </div>
+    </div>
 {% endblock %}

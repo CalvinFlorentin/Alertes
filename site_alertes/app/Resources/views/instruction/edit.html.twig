@@ -1,21 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Instruction edit</h1>
+{% set protocole_active = true %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+{% block title %}Modification d'un groupe{% endblock %}
+{% block description %}Permet de modifier un groupe de contact{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('instruction_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block main_content %}
+    <div class="card">
+        <div class="card-body">
+
+            {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+
+            {{ form_errors(edit_form) }}
+
+            <div class="form-group">
+                {{ form_label(edit_form.nomInstruction, "Nom de l'instruction", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(edit_form.nomInstruction) }}
+                <div class="col-sm-10">
+                    {{ form_widget(edit_form.nomInstruction, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(edit_form.description, "Description de l'instruction", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(edit_form.description) }}
+                <div class="col-sm-10">
+                    {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-info btn-lg btn-block" value="Modifier ce groupe"/>
+                </div>
+            </div>
+
+            {{ form_end(edit_form) }}
+
+            <ul>
+                <li>
+                    <a href="{{ path('instruction_index') }}" class="btn btn-info btn-sm">
+                        <span class="fa fa-reply"></span> Retourner à la liste des instructions
+                    </a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-info btn-sm">
+                        <span class="fa fa-times-circle"></span> Supprimer ce groupe
+                    </button>
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+
+        </div>
+    </div>
 {% endblock %}

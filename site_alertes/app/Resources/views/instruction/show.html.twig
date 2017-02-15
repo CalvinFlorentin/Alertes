@@ -1,36 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Instruction</h1>
+{% set protocole_active = true %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idinstruction</th>
-                <td>{{ instruction.idInstruction }}</td>
-            </tr>
-            <tr>
-                <th>Nominstruction</th>
-                <td>{{ instruction.nomInstruction }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ instruction.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block title %}Détails d'une instruction{% endblock %}
+{% block description %}Consulter les détails d'une instruction.{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('instruction_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block main_content %}
+    <div class="card">
+        <div class="card-body table-responsive">
+            <p>Nom de l'instruction : {{ instruction.nomInstruction }}</p>
+            <p>Description : {{ instruction.description }}</p>
+            <ul>
+                <li>
+                    <a href="{{ path('instruction_index') }}" class="btn btn-info btn-sm">
+                        <span class="fa fa-reply"></span> Retourner à la liste des instructions
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}"
+                       class="btn btn-info btn-sm">
+                        <span class="fa fa-refresh"></span> Modifier cette instruction
+                    </a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-info btn-sm">
+                        <span class="fa fa-times-circle"></span> Supprimer cette instruction
+                    </button>
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

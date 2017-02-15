@@ -60,7 +60,7 @@
                             <a href="{{ path('app_message_listermessages') }}"><i class="fa fa-envelope icon"></i>Gestion des messages</a>
                         </li>
                         <li {% if protocole_active is defined and protocole_active %} class="active" {% endif %}>
-                            <a href="#"><i class="fa fa-bullhorn icon"></i>Gestion des protocoles</a>
+                            <a href="{{ path('protocole_index') }}"><i class="fa fa-bullhorn icon"></i>Gestion des protocoles</a>
                         </li>
                     </ul>
 

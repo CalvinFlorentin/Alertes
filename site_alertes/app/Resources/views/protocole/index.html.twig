@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% set protocole_active = true %}
+
+{% block title %}Gestion des protocoles{% endblock %}
+
+{% block main_content %}
+    <ul>
+        <li><a href="#" class="btn btn-info btn-lg">Exécuter un protocole</a></li>
+        <li><a href="#" class="btn btn-info btn-lg">Gestion des protocoles</a></li>
+        <li><a href="{{ path('instruction_index') }}" class="btn btn-info btn-lg">Gestion des instructructions</a></li>
+    </ul>
+{% endblock %}
