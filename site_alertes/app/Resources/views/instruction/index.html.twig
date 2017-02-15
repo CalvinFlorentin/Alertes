@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Instructions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idinstruction</th>
+                <th>Nominstruction</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instruction in instructions %}
+            <tr>
+                <td><a href="{{ path('instruction_show', { 'id': instruction.idInstruction }) }}">{{ instruction.idInstruction }}</a></td>
+                <td>{{ instruction.nomInstruction }}</td>
+                <td>{{ instruction.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('instruction_show', { 'id': instruction.idInstruction }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('instruction_new') }}">Create a new instruction</a>
+        </li>
+    </ul>
+{% endblock %}
