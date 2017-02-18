@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% set protocole_active = true %}
+
+{% block title %}Gestion des protocoles{% endblock %}
+{% block description %}Vous pouvez gérer ici tous les protocoles.{% endblock %}
+
+{% block main_content %}
+<div class="card">
+    <div class="card-body">
+
+        <ul>{% for protocole in protocoles %}
+            <li><a href="{{ path('protocole_show', {'id': protocole.idProtocole}) }}">{{ protocole.nomProtocole }}</a></li>
+        {% endfor %}</ul>
+
+        <a href="{{ path('protocole_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span>
+            Ajouter un nouveau protocole</a>
+    </div>
+</div>
+{% endblock %}
