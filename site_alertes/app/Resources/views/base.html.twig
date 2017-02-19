@@ -14,6 +14,8 @@
             {# import font-awesome#}
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
 
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/dataTables/dataTables.bootstrap.min.css') }}">
+
             <!--link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /-->
             <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}">
         {% endblock %}
@@ -92,7 +94,9 @@
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('assets/jquery/jquery-3.1.1.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-
+            <script type="text/javascript" src="{{ asset('assets/dataTables/jquery.dataTables.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/dataTables/dataTables.bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/script-dataTables.js') }}"></script>
         {% endblock %}
     {% endblock %}
 </body>
