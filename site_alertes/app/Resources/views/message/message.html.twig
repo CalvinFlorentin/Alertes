@@ -1,6 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block body %}
+{% set message_active = true %}
+
+{% block title %}Affichage de messages{% endblock %}
+
+{% block main_content %}
   <h2>Message actuellement visionné: {{message.libelle}}</h2>
   <p>
     <h3>Objet: </h3>

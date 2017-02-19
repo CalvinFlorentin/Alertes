@@ -1,13 +1,18 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block body %}
-  <h1>liste des messages:<h1>
-  {% for message in messages %}
-    <h2><a href="{{path('app_message_affichermessage',
-            {'id':message.id})  }}">
-              {{message.libelle}}
-        </a>
-    </h2>
+{% set message_active = true %}
 
-  {% endfor %}
+{% block title %}Liste des messages{% endblock %}
+
+{% block main_content %}
+    {% for message in messages %}
+        <h2><a href="{{ path('app_message_affichermessage',
+            {'id':message.id}) }}">
+                {{ message.libelle }}
+            </a>
+        </h2>
+
+    {% endfor %}
+
+    <a href="{{ path('app_message_creermessage') }}" class="btn btn-info btn-sm">Créer un nouveau message</a>
 {% endblock %}

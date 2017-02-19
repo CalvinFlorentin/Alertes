@@ -1,8 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% set message_active = true %}
 
-{% block body %}
-  <h1>Formulaire de création de nouveaux messages</h1>
+{% block title %}Création de nouveau message{% endblock %}
+
+{% block main_content %}
 
   {{ form(form) }}
 
