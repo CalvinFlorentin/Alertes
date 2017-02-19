@@ -25,8 +25,8 @@ use AppBundle\Entity\Message;
       $formBuilder
         ->add('libelle',    'text')
         ->add('objet',      'text')
-        ->add('main',    'textarea')
-        ->add('créer',      'submit')
+        ->add('contenu',    'textarea')
+        ->add('ajouter',      'submit')
       ;
       //Je construit le formualaire
       $form = $formBuilder->getForm();
@@ -48,7 +48,7 @@ use AppBundle\Entity\Message;
     public function listerMessagesAction(){
       $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
       if(!$messages){
-        throw $this->createNotFoundException('aucun message enregistré dans la base de donnée');
+        //throw $this->createNotFoundException('aucun message enregistré dans la base de donnée');
       }
       return array('messages' => $messages);
     }
