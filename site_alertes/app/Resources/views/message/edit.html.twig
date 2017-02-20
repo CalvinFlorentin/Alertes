@@ -3,8 +3,11 @@
 {% set message_active = true %}
 
 {% block title %}Modification d'un message{% endblock %}
-{% block description %}Permet de modifier un message{% endblock %}
 
 {% block main_content %}
     {{ form(form) }}
+
+    <a href="{{ path('app_message_listermessages') }}" class="btn btn-info btn-sm">
+        <span class="fa fa-reply"></span> Retourner à la liste des messages
+      </a>
 {% endblock %}

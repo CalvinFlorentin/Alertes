@@ -15,7 +15,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
   {
     /**
     *@Route("/message/add")
-    *@Template("message/nouveau-message.html.twig")
+    *@Template("message/new.html.twig")
     */
     public function creerMessageAction(Request $request){
       $nouveauMessage = new Message();
@@ -39,7 +39,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
           $managerEntite->flush();
 
           $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
-          return $this->render('message/liste-des-messages.html.twig',array('messages' => $messages));
+          return $this->render('message/index.html.twig',array('messages' => $messages));
         }
         catch(UniqueConstraintViolationException $e){
           echo "<div class='container text-center alert alert-danger' >Ce libellé existe déjà, veuillez en saisir un autre</div>";
@@ -50,7 +50,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
     /**
     *@Route("/messages")
-    *@Template("message/liste-des-messages.html.twig")
+    *@Template("message/index.html.twig")
     */
     public function listerMessagesAction(){
       $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
@@ -62,7 +62,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
     /**
     *@Route("/message/{id}")
-    *@Template("message/message.html.twig")
+    *@Template("message/show.html.twig")
     */
     public function afficherMessageAction(Request $request, $id){
       $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
@@ -100,7 +100,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
           $managerEntite = $this->getDoctrine()->getManager();
           $managerEntite->flush();
           $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
-          return $this->render('message/liste-des-messages.html.twig',array('messages' => $messages));
+          return $this->render('message/index.html.twig',array('messages' => $messages));
         }
         catch(UniqueConstraintViolationException $e){
           echo "<div class='container text-center alert alert-danger' >Ce libellé existe déjà, veuillez en saisir un autre</div>";
@@ -111,6 +111,23 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
     }
 
 
+        /**
+        *@Route("/message/{id}/delete")
+        *@Template("message/index.html.twig")
+        */
+        public function deleteAction($id){
+          $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
+          if(!$message){
+            throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
+
+          }
+          $managerEntite = $this->getDoctrine()->getManager();
+          $managerEntite->remove($message);
+          $managerEntite->flush();
+          $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
+          return array('messages' => $messages);
+
+        }
 
 
 
