@@ -5,14 +5,33 @@
 {% block title %}Liste des messages{% endblock %}
 
 {% block main_content %}
-    {% for message in messages %}
-        <h2><a href="{{ path('app_message_affichermessage',
-            {'id':message.id}) }}">
-                {{ message.libelle }}
-            </a>
-        </h2>
+<table id="tableDonnees" class="table table-striped" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Libelle</th>
+        <th>Objet</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+    </tr>
+    <tbody>
+      {% for message in messages %}
+      <tr>
+          <td><a href="{{ path('app_message_affichermessage',{'id':message.id}) }}">{{ message.libelle }}</a></td>
+          <td>  {{ message.objet }}</td>
+          <td>
+              <a href="{{ path('app_message_majmessage', { 'id':message.id}) }}" type="button" class="btn btn-info btn-xs">
+                  <span class="fa fa-refresh"></span> Modifier
+              </a>
+          </td>
+          <td>
+              <button type="button" class="btn btn-info btn-xs">
+                  <span class="fa fa-times-circle"></span> Supprimer
+              </button>
+          </td>
+      {% endfor %}
+    </tbody>
+    </thead>
 
-    {% endfor %}
 
-    <a href="{{ path('app_message_creermessage') }}" class="btn btn-info btn-sm">Créer un nouveau message</a>
+    <a href="{{ path('app_message_creermessage') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span> Créer un nouveau message</a>
 {% endblock %}
