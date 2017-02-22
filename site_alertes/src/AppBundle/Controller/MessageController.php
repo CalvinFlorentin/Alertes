@@ -9,129 +9,135 @@ use AppBundle\Entity\Message;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 
-
-
-  class MessageController extends Controller
-  {
+class MessageController extends Controller {
     /**
-    *@Route("/message/add")
-    *@Template("message/new.html.twig")
-    */
-    public function creerMessageAction(Request $request){
-      $nouveauMessage = new Message();
-      //J'utilise un form builder pour créer un formulaire  ('form') qui correspond à une entité message
-      $formBuilder = $this->get('form.factory')->createBuilder('form', $nouveauMessage);
-      //J'ajout les champs que je veux dans mon futur formualaire
-      $formBuilder
-        ->add('libelle',    'text')
-        ->add('objet',      'text')
-        ->add('contenu',    'textarea')
-        ->add('ajouter',      'submit')
-      ;
-      //Je construit le formualaire
-      $form = $formBuilder->getForm();
-      //// On fait le lien Requête <-> Formulaire
-      $form->handleRequest($request);
-      if($form->isValid()){
-        try{
-          $managerEntite = $this->getDoctrine()->getManager();
-          $managerEntite->persist($nouveauMessage);
-          $managerEntite->flush();
-
-          $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
-          return $this->render('message/index.html.twig',array('messages' => $messages));
-        }
-        catch(UniqueConstraintViolationException $e){
-          echo "<div class='container text-center alert alert-danger' >Ce libellé existe déjà, veuillez en saisir un autre</div>";
-        }
-      }
-      return array('form' => $form->createView());
-    }
-
-    /**
-    *@Route("/messages")
-    *@Template("message/index.html.twig")
-    */
-    public function listerMessagesAction(){
-      $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
-      if(!$messages){
-        //throw $this->createNotFoundException('aucun message enregistré dans la base de donnée');
-      }
-      return array('messages' => $messages);
-    }
-
-    /**
-    *@Route("/message/{id}")
-    *@Template("message/show.html.twig")
-    */
-    public function afficherMessageAction(Request $request, $id){
-      $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
-      if(!$message){
-        throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
-      }
-      return array('message' => $message);
-    }
-
-    /**
-    *@Route("/message/{id}/edit")
-    *@Template("message/edit.html.twig")
-    */
-    public function majMessageAction(Request $request, $id){
-      $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
-      if(!$message){
-        throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
-      }
-      //$nouveauMessage = new Message();
-      //J'utilise un form builder pour créer un formulaire  ('form') qui correspond à une entité message
-      $formBuilder = $this->get('form.factory')->createBuilder('form', $message);
-      //J'ajout les champs que je veux dans mon futur formualaire
-      $formBuilder
-        ->add('libelle',    'text')
-        ->add('objet',      'text')
-        ->add('contenu',    'textarea')
-        ->add('modifier',      'submit')
-      ;
-      //Je construit le formualaire
-      $form = $formBuilder->getForm();
-      //// On fait le lien Requête <-> Formulaire
-      $form->handleRequest($request);
-      if($form->isValid()){
-        try{
-          $managerEntite = $this->getDoctrine()->getManager();
-          $managerEntite->flush();
-          $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
-          return $this->render('message/index.html.twig',array('messages' => $messages));
-        }
-        catch(UniqueConstraintViolationException $e){
-          echo "<div class='container text-center alert alert-danger' >Ce libellé existe déjà, veuillez en saisir un autre</div>";
-        }
-      }
-      return array('form' => $form->createView());
-
-    }
-
-
-        /**
-        *@Route("/message/{id}/delete")
-        *@Template("message/index.html.twig")
+     * @Route("/message/add")
+     * @Template("message/new.html.twig")
+     */
+    public function creerMessageAction(Request $request) {
+        $nouveauMessage = new Message();
+        /*
+        //J'utilise un form builder pour créer un formulaire  ('form') qui correspond à une entité message
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $nouveauMessage);
+        //J'ajout les champs que je veux dans mon futur formualaire
+        $formBuilder
+          ->add('libelle',    'text')
+          ->add('objet',      'text')
+          ->add('contenu',    'textarea')
+          ->add('ajouter',      'submit')
+        ;
+        //Je construit le formualaire
+        $form = $formBuilder->getForm();
+        //// On fait le lien Requête <-> Formulaire
+        $form->handleRequest($request);
         */
-        public function deleteAction($id){
-          $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
-          if(!$message){
+
+        $form = $this->createForm('AppBundle\Form\MessageType', $nouveauMessage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $managerEntite = $this->getDoctrine()->getManager();
+                $managerEntite->persist($nouveauMessage);
+                $managerEntite->flush();
+
+                $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
+
+                return $this->render('message/index.html.twig', array('messages' => $messages));
+            } catch (UniqueConstraintViolationException $e) {
+                echo "<div class='container text-center alert alert-danger' >Ce libellé existe déjà, veuillez en saisir un autre</div>";
+            }
+        }
+
+        return array('form' => $form->createView());
+    }
+
+    /**
+     * @Route("/messages")
+     * @Template("message/index.html.twig")
+     */
+    public function listerMessagesAction() {
+        $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
+        if (!$messages) {
+            //throw $this->createNotFoundException('aucun message enregistré dans la base de donnée');
+        }
+
+        return array('messages' => $messages);
+    }
+
+    /**
+     * @Route("/message/{id}")
+     * @Template("message/show.html.twig")
+     */
+    public function afficherMessageAction(Request $request, $id) {
+        $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
+        if (!$message) {
+            throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
+        }
+
+        return array('message' => $message);
+    }
+
+    /**
+     * @Route("/message/{id}/edit")
+     * @Template("message/edit.html.twig")
+     */
+    public function majMessageAction(Request $request, $id) {
+        $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
+        if (!$message) {
+            throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
+        }
+    /*
+        //$nouveauMessage = new Message();
+        //J'utilise un form builder pour créer un formulaire  ('form') qui correspond à une entité message
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $message);
+        //J'ajout les champs que je veux dans mon futur formualaire
+        $formBuilder->add('libelle', 'text')->add('objet', 'text')->add('contenu', 'textarea')->add('modifier', 'submit');
+        //Je construit le formualaire
+        $form = $formBuilder->getForm();
+        //// On fait le lien Requête <-> Formulaire
+        $form->handleRequest($request);
+    */
+        $form = $this->createForm('AppBundle\Form\MessageType', $message);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $managerEntite = $this->getDoctrine()->getManager();
+                $managerEntite->flush();
+                $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
+
+                return $this->render('message/index.html.twig', array('messages' => $messages));
+            } catch (UniqueConstraintViolationException $e) {
+                echo "<div class='container text-center alert alert-danger' >Ce libellé existe déjà, veuillez en saisir un autre</div>";
+            }
+        }
+
+        return array('form' => $form->createView());
+
+    }
+
+
+    /**
+     * @Route("/message/{id}/delete")
+     * @Template("message/index.html.twig")
+     */
+    public function deleteAction($id) {
+        $message = $this->getDoctrine()->getRepository('AppBundle:Message')->find($id);
+        if (!$message) {
             throw $this->createNotFoundException('aucun message enregistré dans la base de donnée ne correspond au message recherché');
 
-          }
-          $managerEntite = $this->getDoctrine()->getManager();
-          $managerEntite->remove($message);
-          $managerEntite->flush();
-          $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
-          return array('messages' => $messages);
-
         }
+        $managerEntite = $this->getDoctrine()->getManager();
+        $managerEntite->remove($message);
+        $managerEntite->flush();
+        $messages = $this->getDoctrine()->getRepository('AppBundle:Message')->findAll();
+
+        return array('messages' => $messages);
+
+    }
 
 
+}
 
-
-  }
-
- ?>
+?>

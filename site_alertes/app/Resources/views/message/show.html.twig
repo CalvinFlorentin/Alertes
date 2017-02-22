@@ -2,21 +2,6 @@
 
 {% set message_active = true %}
 
-<<<<<<< Updated upstream:site_alertes/app/Resources/views/message/show.html.twig
-{% block title %}Affichage du messages{% endblock %}
-
-{% block main_content %}
-  <h2>Message actuellement visionné: {{message.libelle}}</h2>
-  <p>
-    <h3>Objet: </h3>
-    {{message.objet}}</br>
-    <h3>Contenu du message: </h3>
-    {{message.contenu}}</br>
-  </p>
-  <a href="{{ path('app_message_listermessages') }}" class="btn btn-info btn-sm">
-      <span class="fa fa-reply"></span> Retourner à la liste des messages
-    </a>
-=======
 {% block title %}Détails d'un message{% endblock %}
 {% block description %}Vous pouvez consulter toutes les informations du message <b>{{ message.libelle }}</b>.{% endblock %}
 
@@ -32,7 +17,12 @@
             <a href="{{ path('app_message_listermessages') }}" class="btn btn-info">
                 <span class="fa fa-reply"></span> Retourner à la liste des messages
             </a>
+            <a href="{{ path('app_message_majmessage', { 'id':message.id }) }}" class="btn btn-info">
+                <span class="fa fa-refresh"></span> Modifier ce message
+            </a>
+            <a href="{{ path('app_message_delete', { 'id':message.id}) }}" class="btn btn-info">
+                <span class="fa fa-times-circle"></span> Supprimer ce message
+            </a>
         </div>
     </div>
->>>>>>> Stashed changes:site_alertes/app/Resources/views/message/message.html.twig
 {% endblock %}
