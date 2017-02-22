@@ -2,46 +2,64 @@
 
 {% set contact_active = true %}
 
-{% block title %}Détail du contact{% endblock %}
-{% block description %}Vous pouvez consulter toutes les informations du contact {% endblock %}
+{% block title %}Détails d'un contact{% endblock %}
+{% block description %}Vous pouvez consulter toutes les informations d'un contact.{% endblock %}
 
 {% block main_content %}
     <div class="card">
-        <div class="card-body table-responsive">
-            {% if contact.personne != false %}
-                <p>Nom de la personne : {{ contact.personne.nomPersonne }}</p>
-                <p>Prénom de la personne : {{ contact.personne.prenomPersonne }}</p>
+        <div class="card-body">
+            {% if contact.personne %}
+                <p><span class="details-label">Nom de la personne :</span> {{ contact.personne.nomPersonne }}</p>
+                <p><span class="details-label">Prénom de la personne :</span> {{ contact.personne.prenomPersonne }}</p>
             {% elseif contact.organisme != false %}
-                <p>Nom de l'organisme : {{ contact.organisme.nomOrganisme }}</p>
+                <p><span class="details-label">Nom de l'organisme :</span> {{ contact.organisme.nomOrganisme }}</p>
             {% else %}
-                <p>Aucune personne ou organisme associer à ce contact</p>
+                <p><span class="details-label">Aucune personne ou organisme associer à ce contact</span></p>
             {% endif %}
 
-            <p>Email : {{ contact.email }}</p>
-            <p>Téléphone : {{ contact.telephone }}</p>
-            <p>Adresse : {{ contact.adresse }}</p>
-            <p>Code Postal : {{ contact.codePostal }}</p>
-            <p>Ville : {{ contact.ville }}</p>
+            {% if contact.email %}
+                <p><span class="details-label">Email :</span> {{ contact.email }}</p>
+            {% else %}
+                <p><span class="details-label">Email :</span> {{ non_renseigne }}</p>
+            {% endif %}
 
-            <ul>
-                <li>
-                    <a href="{{ path('personne_index') }}" class="btn btn-info btn-sm">
-                        <span class="fa fa-reply"></span> Retourner à la liste des contacts
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('personne_edit', { 'id': contact.idContact }) }}" class="btn btn-info btn-sm">
-                        <span class="fa fa-refresh"></span> Modifier ce contact
-                    </a>
-                </li>
-                <li>
-                    {{ form_start(delete_form) }}
-                    <button type="submit" class="btn btn-info btn-sm">
-                        <span class="fa fa-times-circle"></span> Supprimer ce contact
-                    </button>
-                    {{ form_end(delete_form) }}
-                </li>
-            </ul>
+            {% if contact.telephone %}
+                <p><span class="details-label">Téléphone :</span> {{ contact.telephone }}</p>
+            {% else %}
+                <p><span class="details-label">Téléphone :</span> {{ non_renseigne }}</p>
+            {% endif %}
+
+            {% if contact.adresse %}
+                <p><span class="details-label">Adresse :</span> {{ contact.adresse }}</p>
+            {% else %}
+                <p><span class="details-label">Adresse :</span> {{ non_renseigne }}</p>
+            {% endif %}
+
+            {% if contact.codePostal %}
+                <p><span class="details-label">Code Postal :</span> {{ contact.codePostal }}</p>
+            {% else %}
+                <p><span class="details-label">Code Postal :</span> {{ non_renseigne }}</p>
+            {% endif %}
+
+            {% if contact.ville %}
+                <p><span class="details-label">Ville :</span> {{ contact.ville }}</p>
+            {% else %}
+                <p><span class="details-label">Ville :</span> {{ non_renseigne }}</p>
+            {% endif %}
+        </div>
+
+        <div class="btn-group-vertical">
+            <a href="{{ path('personne_index') }}" class="btn btn-info">
+                <span class="fa fa-reply"></span> Retourner à la liste des contacts
+            </a>
+            <a href="{{ path('personne_edit', { 'id': contact.idContact }) }}" class="btn btn-info">
+                <span class="fa fa-refresh"></span> Modifier ce contact
+            </a>
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-info btn-group-form-delete">
+                <span class="fa fa-times-circle"></span> Supprimer ce contact
+            </button>
+            {{ form_end(delete_form) }}
         </div>
     </div>
 {% endblock %}

@@ -3,33 +3,33 @@
 {% set protocole_active = true %}
 
 {% block title %}Détails d'une instruction{% endblock %}
-{% block description %}Consulter les détails d'une instruction.{% endblock %}
+{% block description %}Consulter les informations de l'instruction <b>{{ instruction.nomInstruction }}</b>.{% endblock %}
 
 {% block main_content %}
     <div class="card">
-        <div class="card-body table-responsive">
-            <p>Nom de l'instruction : {{ instruction.nomInstruction }}</p>
-            <p>Description : {{ instruction.description }}</p>
-            <ul>
-                <li>
-                    <a href="{{ path('instruction_index') }}" class="btn btn-info btn-sm">
-                        <span class="fa fa-reply"></span> Retourner à la liste des instructions
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}"
-                       class="btn btn-info btn-sm">
-                        <span class="fa fa-refresh"></span> Modifier cette instruction
-                    </a>
-                </li>
-                <li>
-                    {{ form_start(delete_form) }}
-                    <button type="submit" class="btn btn-info btn-sm">
-                        <span class="fa fa-times-circle"></span> Supprimer cette instruction
-                    </button>
-                    {{ form_end(delete_form) }}
-                </li>
-            </ul>
+        <div class="card-body">
+            <p><span class="details-label">Nom de l'instruction :</span> {{ instruction.nomInstruction }}</p>
+
+            {% if instruction.description %}
+                <p><span class="details-label">Description :</span> {{ instruction.description }}</p>
+            {% else %}
+                <p><span class="details-label">Description :</span> {{ non_renseigne }}</p>
+            {% endif %}
+        </div>
+
+        <div class="btn-group-vertical">
+            <a href="{{ path('instruction_index') }}" class="btn btn-info">
+                <span class="fa fa-reply"></span> Retourner à la liste des instructions
+            </a>
+            <a href="{{ path('instruction_edit', { 'id': instruction.idInstruction }) }}"
+               class="btn btn-info">
+                <span class="fa fa-refresh"></span> Modifier cette instruction
+            </a>
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-info btn-group-form-delete">
+                <span class="fa fa-times-circle"></span> Supprimer cette instruction
+            </button>
+            {{ form_end(delete_form) }}
         </div>
     </div>
 {% endblock %}

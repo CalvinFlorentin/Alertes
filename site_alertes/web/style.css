@@ -5,6 +5,7 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
+    font-size: 16px;
 }
 
 
@@ -85,4 +86,39 @@ body {
 }
 .main .page-header {
     margin-top: 0;
+}
+
+.title {
+    color: #17558a;
+}
+
+.description {
+    font-style: italic;
+    font-size: 14px;
+}
+
+.card-body {
+    margin: 2%;
+}
+
+.dataTables_length {
+    margin-top: 12px;
+}
+
+.details-label {
+    font-weight: 600;
+    color: #337ab7;
+}
+
+.btn-group-form-delete {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+}
+
+.message-contenu {
+    margin-left: 10%;
+    margin-right: 5%;
+    text-align: justify;
 }

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% set groupe_active = true %}
+
+{% block title %}Création d'un protocole{% endblock %}
+{% block description %}Permet de créer un nouveau protocole.{% endblock %}
+
+{% block main_content %}
+    <div class="card">
+        <div class="card-body">
+
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.protocole.nomProtocole, "Nom du protocole", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_errors(form.protocole.nomProtocole) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.protocole.nomProtocole, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="well">
+                {{ form_row(form.instruction) }}
+                {{ form_row(form.position) }}
+                <a href="#" id="add_instruction" class="btn btn-default">Ajouter une instruction</a>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit"  class="btn btn-info btn-lg btn-block" value="Enregistrer ce protocole" />
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+
+            <a href="{{ path('protocole_list') }}" class="btn btn-info btn-sm">
+                <span class="fa fa-reply"></span> Retourner à la liste des protocoles
+            </a>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $containerInstruction = $('div#appbundle_protocoleinstruction_instruction');
+            var $containerPosition = $('div#appbundle_protocoleinstruction_position');
+            //var $containerInstruction = $('div#appbundle_protocoleinstruction_instruction');
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var index = $containerInstruction.find(':input').length;
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $('#add_instruction').click(function(e) {
+                addCategory($containerInstruction, $containerPosition);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+            if (index == 0) {
+                addCategory($containerInstruction, $containerPosition);
+            } else {
+                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+                $containerInstruction.children('div').each(function() {
+                    addDeleteLink($(this));
+                });
+            }
+
+            // La fonction qui ajoute un formulaire CategoryType
+            function addCategory($container, $containerPos) {
+                // Dans le contenu de l'attribut « data-prototype », on remplace :
+                // - le texte "__name__label__" qu'il contient par le label du champ
+                // - le texte "__name__" qu'il contient par le numéro du champ
+                var template = $container.attr('data-prototype')
+                        .replace(/__name__label__/g, 'Instruction n°' + (index+1))
+                        .replace(/__name__/g,        index)
+                    ;
+
+                var template2 = $containerPos.attr('data-prototype')
+                    .replace(/__name__label__/g, 'Position : ')
+                    .replace(/__name__/g,        index)
+                ;
+
+
+
+                //addPosition($containerPos);
+
+                // On crée un objet jquery qui contient ce template
+                var $prototype = $(template);
+                $prototype.append(template2);
+                // On ajoute le prototype modifié à la fin de la balise <div>
+                $container.append($prototype);
+
+                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                addDeleteLink($prototype);
+
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index++;
+            }
+
+            // La fonction qui ajoute un lien de suppression d'une catégorie
+            function addDeleteLink($prototype) {
+                // Création du lien
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+                // Ajout du lien
+                $prototype.append($deleteLink);
+
+                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+                $deleteLink.click(function(e) {
+                    $prototype.remove();
+
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+        });
+    </script>
+{% endblock %}

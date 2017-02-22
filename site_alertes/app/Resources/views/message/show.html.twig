@@ -2,6 +2,7 @@
 
 {% set message_active = true %}
 
+<<<<<<< Updated upstream:site_alertes/app/Resources/views/message/show.html.twig
 {% block title %}Affichage du messages{% endblock %}
 
 {% block main_content %}
@@ -15,4 +16,23 @@
   <a href="{{ path('app_message_listermessages') }}" class="btn btn-info btn-sm">
       <span class="fa fa-reply"></span> Retourner à la liste des messages
     </a>
+=======
+{% block title %}Détails d'un message{% endblock %}
+{% block description %}Vous pouvez consulter toutes les informations du message <b>{{ message.libelle }}</b>.{% endblock %}
+
+{% block main_content %}
+    <div class="card">
+        <div class="card-body">
+            <p><span class="details-label">Libéllé du message :</span> {{ message.libelle }}</p>
+            <p><span class="details-label">Objet du message :</span> {{ message.objet }}</p>
+            <p><span class="details-label">Contenu du message :</span><br> <div class="message-contenu">{{ message.contenu }}</div></p>
+        </div>
+
+        <div class="btn-group-vertical">
+            <a href="{{ path('app_message_listermessages') }}" class="btn btn-info">
+                <span class="fa fa-reply"></span> Retourner à la liste des messages
+            </a>
+        </div>
+    </div>
+>>>>>>> Stashed changes:site_alertes/app/Resources/views/message/message.html.twig
 {% endblock %}

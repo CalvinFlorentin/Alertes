@@ -10,7 +10,7 @@
     <div class="card-body">
 
         <ul>{% for protocole in protocoles %}
-            <li><a href="{{ path('protocole_show', {'id': protocole.idProtocole}) }}">{{ protocole.nomProtocole }}</a></li>
+            <li><a href="{{ path('protocole_show', {'id': protocole.idProtocole}) }}" class="btn btn-default">{{ protocole.nomProtocole }}</a></li>
         {% endfor %}</ul>
 
         <a href="{{ path('protocole_new') }}" class="btn btn-info btn-sm"><span class="fa fa-plus-circle"></span>

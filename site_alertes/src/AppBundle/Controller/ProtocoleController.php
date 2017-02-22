@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Protocole;
-//use AppBundle\Entity\ProtocoleInstruction;
-//use AppBundle\Entity\Instruction;
+use AppBundle\Entity\ProtocoleInstruction;
+use AppBundle\Entity\Instruction;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -52,7 +52,24 @@ class ProtocoleController extends Controller
      * @Route("/new", name="protocole_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction() {
+    public function newAction(Request $request) {
+        $protocole = new ProtocoleInstruction();
+        $form = $this->createForm('AppBundle\Form\ProtocoleInstructionType', $protocole);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($protocole);
+            $em->flush($protocole);
+
+            return $this->redirectToRoute('protocole_show', array('id' => $protocole->getIdProtocole()));
+        }
+
+        return $this->render('protocole/new.html.twig', array(
+            'protocole' => $protocole,
+            'form' => $form->createView(),
+        ));
+
         return $this->render('protocole/new.html.twig');
     }
 

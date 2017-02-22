@@ -20,7 +20,6 @@ class ProtocoleInstructionType extends AbstractType
         $builder
             ->add('position', CollectionType::class, array(
                 'entry_type' => IntegerType::class,
-                'required' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
             ))

@@ -2,42 +2,41 @@
 
 {% set groupe_active = true %}
 
-{% block title %}Détail du groupe{% endblock %}
-{% block description %}Vous pouvez consulter toutes les informations du groupe {{ groupe.nomGroupe }}. {% endblock %}
+{% block title %}Détails d'un groupe de contacts{% endblock %}
+{% block description %}Vous pouvez consulter toutes les informations du groupe de contacts <b>{{ groupe.nomGroupe }}</b>. {% endblock %}
 
 {% block main_content %}
     <div class="card">
-        <div class="card-body table-responsive">
-            <p>Nom du groupe : {{ groupe.nomGroupe }}</p>
+        <div class="card-body">
+            <p><span class="details-label">Nom du groupe :</span> {{ groupe.nomGroupe }}</p>
 
             <p>
-                Listes des contacts de ce groupe :
-                <ul>
-                    {% for contact in groupe.contacts %}
-                        <li>{{ contact.email }}</li>
-                    {% endfor %}
-                </ul>
-            </p>
+                <span class="details-label">Listes des contacts de ce groupe :</span>
+                {% if groupe.contacts != false %}
+                    Aucun contact n'est attaché à ce groupe
 
-            <ul>
-                <li>
-                    <a href="{{ path('groupe_index') }}" class="btn btn-info btn-sm">
-                        <span class="fa fa-reply"></span> Retourner à la liste des groupes
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}" class="btn btn-info btn-sm">
-                        <span class="fa fa-refresh"></span> Modifier ce groupe
-                    </a>
-                </li>
-                <li>
-                    {{ form_start(delete_form) }}
-                    <button type="submit" class="btn btn-info btn-sm">
-                        <span class="fa fa-times-circle"></span> Supprimer ce groupe
-                    </button>
-                    {{ form_end(delete_form) }}
-                </li>
-            </ul>
+                {% else %}
+                    <ul>
+                        {% for contact in groupe.contacts %}
+                            <li>{{ contact.email }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="btn-group-vertical">
+            <a href="{{ path('groupe_index') }}" class="btn btn-info">
+                <span class="fa fa-reply"></span> Retourner à la liste des groupes
+            </a>
+            <a href="{{ path('groupe_edit', { 'id': groupe.idGroupe }) }}" class="btn btn-info">
+                <span class="fa fa-refresh"></span> Modifier ce groupe
+            </a>
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-info btn-group-form-delete">
+                <span class="fa fa-times-circle"></span> Supprimer ce groupe
+            </button>
+            {{ form_end(delete_form) }}
         </div>
     </div>
 {% endblock %}
