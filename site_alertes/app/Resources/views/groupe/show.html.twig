@@ -12,7 +12,7 @@
 
             <p>
                 <span class="details-label">Listes des contacts de ce groupe :</span>
-                {% if groupe.contacts != false %}
+                {% if groupe.contacts.count == 0 %}
                     Aucun contact n'est attaché à ce groupe
 
                 {% else %}
