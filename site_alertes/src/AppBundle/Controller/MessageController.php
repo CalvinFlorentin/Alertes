@@ -53,7 +53,7 @@ class MessageController extends Controller {
     }
 
     /**
-     * @Route("/messages")
+     * @Route("/message")
      * @Template("message/index.html.twig")
      */
     public function listerMessagesAction() {
